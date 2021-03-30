@@ -29,4 +29,9 @@ db.createCollection("posts", {
 
 
 
-db.posts.insert([{title: "hello", author: "Pearl", post: "Hi my name is Pearl"}])
+db.posts.insertOne([
+   {
+      title: "hello", 
+      author: "Pearl", 
+      post: "Hi my name is Pearl"}
+])
