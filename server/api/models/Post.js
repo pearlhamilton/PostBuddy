@@ -12,31 +12,44 @@ class Post {
     static get all() {
         return new Promise (async (resolve, reject) => {
             try {
-
+                const db = await init();
+                const postsData = await db.collection("posts").find().toArray();
+                const posts = postsData.map(
+                    p => new Post({ ...p, id: p.id})
+                );
+                resolve(posts);
             } catch(err) {
-
+                console.log(err);
+                reject("Error retrieving all posts");
             }
         })
+    };
 
-    }
-
-    static findById() {
+    static findById(id) {
         return new Promise (async (resolve, reject) => {
             try {
-
+                const db = await init();
+                let postData = await db.collection('posts').find({_id: ObjectId(id)});
+                let post = new Post( {...postData[0], id: postData[0].id} );
+                resolve(post);
             } catch(err) {
-                
+                reject("Could not find that post");                
             }
-        })
-    }
+        });
+    };
 
     static create(postData) {
         return new Promise (async (resolve, reject) => {
             try {
-
+                const db = await init();
+                let postData = await db.collection('posts').insertOne({postData});
+                let newPost = new Post(postData.ops[0]);
+                resolve(newPost);
             } catch(err) {
-                
+                reject('Sorry, we could not create that post!');                
             }
-        })
-    }
-}
+        });
+    };
+};
+
+module.exports = Post;
