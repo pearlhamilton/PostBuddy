@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Post = require('../models/Post');
 
-//Creat in
+//Create index callback function
 async function index (req, res) {
     try {
         const posts = await Post.all;
@@ -13,6 +13,7 @@ async function index (req, res) {
     }
 }
 
+//Create show callback function
 async function show (req, res) {
     try {
         const post = await Post.findById(parseInt(req.params.id));
