@@ -23,4 +23,14 @@ async function show (req, res) {
     }
 }
 
-module.exports = { index, show };
+//Make create callback function
+async function create (req, res) {
+    try {
+
+
+    } catch(err) {
+
+    }
+}
+
+module.exports = { index, show, create };
