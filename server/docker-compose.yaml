@@ -1,0 +1,34 @@
+version: "3"
+services:
+  api:
+    image: node:12.19.0
+    working_dir: /code
+    volumes:
+      - type: bind
+        source: ./api
+        target: /code
+    ports: 
+      - 3000:3000
+    
+    environment: 
+      - DB_NAME=posts_db
+      - DB_CONNECTION=mongodb://pearlAndElwin:password@db:27017
+    depends_on:
+      - db
+    command: bash -c "npm install && npm start"
+
+  
+
+  db:
+    image: mongo:latest
+
+    volumes:
+      - "dbdata:/var/lib/mongodb/data"
+      - "./db/setup.js:/docker-entrypoint-initdb.d/setup.js:ro"
+
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=pearlAndElwin
+      - MONGO_INITDB_DATABASE=posts_db
+      - MONGO_INITDB_ROOT_PASSWORD=password
+volumes:
+  dbdata:
