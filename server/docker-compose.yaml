@@ -24,11 +24,11 @@ services:
 
     volumes:
       - "dbdata:/var/lib/mongodb/data"
-      - "./db/setup.js:/docker-entrypoint-initdb.d/setup.js:ro"
+      - "./db/seeds.js:/docker-entrypoint-initdb.d/seeds.js:ro"
 
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=pearlAndElwin
-      - MONGO_INITDB_DATABASE=posts_db
+      - MONGO_INITDB_DATABASE=posts
       - MONGO_INITDB_ROOT_PASSWORD=password
 volumes:
   dbdata:
