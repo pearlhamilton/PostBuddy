@@ -1,7 +1,7 @@
 //Create event listener for entire window
 window.addEventListener('submit', createPost);
 
-function createPost(e) {
+async function createPost(e) {
     e.preventDefault();
     console.log(e.target.title.value);
     const body = {
@@ -19,11 +19,11 @@ function createPost(e) {
         },
         body: JSON.stringify(body)
     }
-    let response = fetch("http://localhost:3000/posts", options)
+    let response = await fetch("http://localhost:3000/posts", options)
         .then(r => r.json())
-        .then(data => console.log(data))
+        .then(data => getPost(data.id))
         .catch(console.warn);
-    console.log(`${response} is of type ${typeof(response)}`);
+    // console.log(`${response} is of type ${typeof(response)}`);
   
     return response;
 
@@ -31,9 +31,17 @@ function createPost(e) {
 }
 
 
-function getPost(){
+async function getPost(id){
     const body = document.querySelector('body')
     body.innerHTML = " "
+    let response = await fetch(`http://localhost:3000/posts/${id}`)
+        .then(r => r.json())
+        .then(data => renderNewContent(data))
+
 }
 
-// _id: ObjectId(id)
+function renderNewContent(data){
+    const body = document.querySelector('body')
+    body.innerHTML = `${data.title}, ${data.author}, ${data.post}`
+
+}
