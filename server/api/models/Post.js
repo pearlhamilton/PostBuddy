@@ -38,11 +38,11 @@ class Post {
         });
     };
 
-    static create(postData) {
+    static create(title, author, post) {
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
-                let postData = await db.collection('posts').insertOne({postData});
+                let postData = await db.collection('posts').insertOne({ title, author, post });
                 let newPost = new Post(postData.ops[0]);
                 resolve(newPost);
             } catch(err) {
