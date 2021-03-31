@@ -23,7 +23,6 @@ async function createPost(e) {
         .then(r => r.json())
         .then(data => getPost(data.id))
         .catch(console.warn);
-    // console.log(`${response} is of type ${typeof(response)}`);
   
     return response;
 
