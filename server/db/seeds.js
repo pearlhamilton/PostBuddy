@@ -1,4 +1,4 @@
-db = connect("localhost:27017/posts")
+db = connect("localhost:27017/posts_db")
 
 db.posts.drop()
 
@@ -29,9 +29,4 @@ db.posts.drop()
 
 
 
-db.posts.insertOne([
-   {
-      title: "hello", 
-      author: "Pearl", 
-      post: "Hi my name is Pearl"}
-])
+db.posts.insertOne({title: "hello", author: "Pearl", post: "Hi my name is Pearl"})

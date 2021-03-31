@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Post = require('../models/Post');
 
-//Creat in
+//Create index callback function
 async function index (req, res) {
     try {
         const posts = await Post.all;
@@ -13,13 +13,24 @@ async function index (req, res) {
     }
 }
 
+//Create show callback function
 async function show (req, res) {
     try {
-        const post = await Post.findById(parseInt(req.params.id));
+        const post = await Post.findById(req.params.id);
         res.status(200).json(post);
     } catch(err) {
         res.status(404).json({err});
     }
 }
 
-module.exports = { index, show };
+//Make create callback function
+async function create (req, res) {
+    try {
+        const post = await Post.create(req.body.title, req.body.author, req.body.post);
+        res.status(201).json(post);
+    } catch(err) {
+        res.status(422).json({err});
+    }
+}
+
+module.exports = { index, show, create };
