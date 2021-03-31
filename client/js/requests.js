@@ -21,7 +21,19 @@ function createPost(e) {
     }
     let response = fetch("http://localhost:3000/posts", options)
         .then(r => r.json())
+        .then(data => console.log(data))
         .catch(console.warn);
     console.log(`${response} is of type ${typeof(response)}`);
+  
     return response;
+
+    
 }
+
+
+function getPost(){
+    const body = document.querySelector('body')
+    body.innerHTML = " "
+}
+
+// _id: ObjectId(id)
