@@ -29,7 +29,7 @@ class Post {
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
-                let postData = await db.collection('posts').find({_id: ObjectId(id)});
+                let postData = await db.collection('posts').find({_id: ObjectId(id)}).toArray();
                 let post = new Post( {...postData[0], id: postData[0].id} );
                 resolve(post);
             } catch(err) {
