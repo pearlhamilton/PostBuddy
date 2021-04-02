@@ -22,9 +22,13 @@ async function createPost(e) {
     let response = await fetch("http://localhost:3000/posts", options)
     let data = await response.json()
     let id = data.id
-    window.location.hash += `${id}`
+    addHashtoUrl(id)
 
     
+}
+
+function addHashtoUrl(id){
+    window.location.hash += `${id}`
 }
 
 // we want to listen for a hash change which will then render new content 
@@ -34,8 +38,6 @@ window.addEventListener('load', updatePage)
 
 function updatePage(){
     let id = window.location.hash.substring(1)
-    console.log(id)
-
     if (id.length > 0){
         getPost(id) 
     }
@@ -51,14 +53,16 @@ async function getPost(id){
     if (data.err){
         throwError(data)
     }
+
+    else{
     renderNewContent(data)
     }
+}
     catch (error){
         console.warn(error);
 
 
     }
-
 
 }
 
