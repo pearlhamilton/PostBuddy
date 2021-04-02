@@ -41,6 +41,10 @@ function updatePage(){
     if (id.length > 0){
         getPost(id) 
     }
+
+    else{
+        renderForm()
+    }
   
 }
 
@@ -91,3 +95,11 @@ function throwError(data){
 
 }
 
+
+function renderForm(){
+    console.log('hello')
+   const formSection = document.getElementById("formSection")
+
+        formSection.style.display = "block"
+
+}

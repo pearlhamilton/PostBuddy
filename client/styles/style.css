@@ -3,6 +3,10 @@ h1,h2, p{
     text-align: center;
 }
 
+#formSection{
+    display:none;
+}
+
 form{
  display:flex;
  flex-direction: column;
