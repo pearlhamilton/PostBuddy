@@ -23,12 +23,13 @@ services:
     image: mongo:latest
 
     volumes:
-      - "dbdata:/var/lib/mongodb/data"
       - "./db/seeds.js:/docker-entrypoint-initdb.d/seeds.js:ro"
+      - data-volume:/data/db
 
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=pearlAndElwin
       - MONGO_INITDB_DATABASE=posts_db
       - MONGO_INITDB_ROOT_PASSWORD=password
 volumes:
-  dbdata:
+    data-volume:
+

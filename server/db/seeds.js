@@ -1,6 +1,6 @@
 db = connect("localhost:27017/posts_db")
 
-db.posts.drop()
+// db.posts.drop()
 
 // db.createCollection("posts", {
 //     validator: {
