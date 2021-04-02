@@ -1,15 +1,15 @@
 //Create event listener for entire window
 window.addEventListener('submit', createPost);
 
+const body = document.querySelector('body')
+
 async function createPost(e) {
     e.preventDefault();
-    console.log(e.target.title.value);
     const body = {
         "title": e.target.title.value,
         "author": e.target.author.value,
         "post": e.target.post.value
     };
-    console.log(`User input is ${body}.`);
 
     const options = {
         method: 'POST',
@@ -20,22 +20,35 @@ async function createPost(e) {
         body: JSON.stringify(body)
     }
     let response = await fetch("http://localhost:3000/posts", options)
-        .then(r => r.json())
-        .then(data => getPost(data.id))
-        .catch(console.warn);
-  
-    return response;
+    let data = await response.json()
+    let id = data.id
+    window.location.hash += `${id}`
 
     
 }
 
+// we want to listen for a hash change which will then render new content 
+
+window.addEventListener('hashchange', updatePage)
+window.addEventListener('load', updatePage)
+
+function updatePage(){
+    let id = window.location.hash.substring(1)
+    console.log(id)
+
+    if (id.length > 0){
+        getPost(id) 
+    }
+   
+}
 
 async function getPost(id){
     const body = document.querySelector('body')
     body.innerHTML = " "
     let response = await fetch(`http://localhost:3000/posts/${id}`)
-        .then(r => r.json())
-        .then(data => renderNewContent(data))
+    .then(r => r.json())    
+    .then(data => renderNewContent(data))
+
 
 }
 
@@ -44,3 +57,4 @@ function renderNewContent(data){
     body.innerHTML = `${data.title}, ${data.author}, ${data.post}`
 
 }
+
