@@ -41,7 +41,7 @@ function updatePage(){
     if (id.length > 0){
         getPost(id) 
     }
-   
+  
 }
 
 async function getPost(id){
@@ -75,10 +75,11 @@ function renderNewContent(data){
     postDiv.append(h1)
     postDiv.append(h2)
     postDiv.append(para)
-    h1.textContent = data.title
-    h2.textContent = data.author
-    para.textContent = data.post
+    h1.textContent = `Title: ${data.title}`
+    h2.textContent = `Author: ${data.author}`
+    para.textContent = `Message: ${data.post}`
     body.append(postDiv)
+    
     
 
 }
