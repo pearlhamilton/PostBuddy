@@ -28,8 +28,8 @@ See commit history for full changelog.
 
 ## Bugs
 
-- [ ] No redirection/unique path for revisiting the post (to be implemented)
-- [ ] Sorry, there's no styling!
+- [x] No redirection/unique path for revisiting the post (to be implemented)
+- [x] Sorry, there's no styling!
 
 ### Miscellaneous
 
