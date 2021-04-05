@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostBuddy</title>
+    <link rel="icon" href="..." />
+    <link rel="stylesheet" href="./styles/style.css" />
+</head>
+<body>
+    <div id="formSection">
+
+    <h1>Leave your thoughts</h1>
+            <form>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required />
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" required />
+            <label for="post">Post</label>
+            <textarea name="post" id="post" cols="30" rows="10" required></textarea>
+            <input type="submit" id="submit-btn" value="Submit"/>
+        </form>
+
+    </div>
+
+   
+    <script src="./js/requests.js"></script>
+    <script src="./js/posts.js"></script>
+
+    
+</body>
+</html>
